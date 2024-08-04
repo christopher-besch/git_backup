@@ -12,6 +12,11 @@ clone_repo() {
     CLONE_REMOTE="git@$1.git"
     CLONE_TARGET="$DIR/repos/$1"
 
+    if [ -d "$CLONE_TARGET" ]; then
+        echo "skipping clone of $CLONE_REMOTE into $CLONE_TARGET"
+        return
+    fi
+
     echo "cloning $CLONE_REMOTE into $CLONE_TARGET"
 
     rm -vrf "$CLONE_TARGET"
